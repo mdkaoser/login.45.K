@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cyberpunk Login</title>
+  <meta name="description" content="Cyberpunk login UI with frosted glass effect and password visibility toggle." />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Rajdhani', sans-serif;
+      color: white;
+    }
+
+    body {
+      min-height: 100vh;
+      background: url('https://i.postimg.cc/ZRR67gMy/kevin-jiner-Wf-Hqt-ZULD4-unsplash.jpg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .login-container {
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 40px 30px;
+      border-radius: 12px;
+      width: 85vw;
+      max-width: 420px;
+      min-width: 280px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    .input-group i.fa-user,
+    .input-group i.fa-lock {
+      position: absolute;
+      top: 35%;
+      left: 10px;
+      transform: translateY(-50%);
+      font-size: 18px;
+      pointer-events: none;
+    }
+
+    .input-group i.fa-eye,
+    .input-group i.fa-eye-slash {
+      position: absolute;
+      top: 35%;
+      right: 10px;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .input-group i.fa-eye:hover,
+    .input-group i.fa-eye-slash:hover {
+      color: white;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      height: 44px;
+      padding: 12px 36px 12px 36px;
+      margin-bottom: 16px;
+      border: none;
+      border-radius: 6px;
+      background-color: #222;
+      color: white;
+    }
+
+    input::placeholder {
+      color: white;
+    }
+
+    input:focus {
+      outline: none;
+      background-color: #111;
+    }
+
+    .remember {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #111;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #854a67;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 13px;
+    }
+
+    .register-link a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form onsubmit="return validateForm()">
+      <div class="input-group">
+        <i class="fa fa-user"></i>
+        <input type="text" id="username" placeholder="Username" />
+      </div>
+      <div class="input-group">
+        <i class="fa fa-lock"></i>
+        <input type="password" id="password" placeholder="Password" />
+        <i class="fa-regular fa-eye-slash" id="toggle-eye" onclick="togglePassword()"></i>
+      </div>
+      <div class="remember">
+        <label><input type="checkbox" /> Remember me</label>
+        <a href="#">Forgot Password?</a>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <div class="register-link">
+      Don't have an account? <a href="#">Register</a>
+    </div>
+  </div>
+
+  <script>
+    function validateForm() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      if (user === "" || pass === "") {
+        alert("Please enter both username and password.");
+        return false;
+      }
+      return true;
+    }
+
+    function togglePassword() {
+      const passwordField = document.getElementById("password");
+      const eyeIcon = document.getElementById("toggle-eye");
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        eyeIcon.classList.remove("fa-eye");
+        eyeIcon.classList.add("fa-eye-slash");
+      } else {
+        passwordField.type = "password";
+        eyeIcon.classList.remove("fa-eye-slash");
+        eyeIcon.classList.add("fa-eye");
+      }
+    }
+  </script>
+</body>
+</html>
